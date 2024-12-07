@@ -1,4 +1,4 @@
-import emptyPage from './tips.html'
+import DOCS from './tips.html'
 
 addEventListener("fetch", (event) => {
   event.passThroughOnException();
@@ -36,17 +36,19 @@ async function handleRequest(request) {
   const url = new URL(request.url);
   const upstream = routeByHosts(url.hostname);
   if (upstream === "") {
-    return new Response(emptyPage, {
-      status: 200,
-      headers: {
-        "content-type": "text/html"
+    return new Response(
+      JSON.stringify({
+        routes: routes,
+      }),
+      {
+        status: 404,
       }
-    });
+    );
   }
-
-  // return 404.html
+   
+  // return tips.html
   if (url.pathname === "/") {
-    return new Response(emptyPage, {
+    return new Response(DOCS, {
       status: 200,
       headers: {
         "content-type": "text/html"
