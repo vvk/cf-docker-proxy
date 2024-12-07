@@ -1,4 +1,4 @@
-import DOCS from './404.html'
+
 
 addEventListener("fetch", (event) => {
   event.passThroughOnException();
@@ -36,24 +36,20 @@ async function handleRequest(request) {
   const url = new URL(request.url);
   const upstream = routeByHosts(url.hostname);
   if (upstream === "") {
-    return new Response(
+    return await fetch(request) {
+      const _url = new URL("https://hub.docker.com/");
+      const req = new Request(_url, request);
+      return fetch(req);
+    }
+    //return Response.redirect('https://hub.docker.com/', 302);
+    /*return new Response(
       JSON.stringify({
         routes: routes,
       }),
       {
         status: 404,
       }
-    );
-  }
-   
-  // return tips.html
-  if (url.pathname === "/") {
-    return new Response(DOCS, {
-      status: 200,
-      headers: {
-        "content-type": "text/html"
-      }
-    });
+    );*/
   }
   
   const isDockerHub = upstream == dockerHub;
