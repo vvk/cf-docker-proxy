@@ -36,20 +36,14 @@ async function handleRequest(request) {
   const url = new URL(request.url);
   const upstream = routeByHosts(url.hostname);
   if (upstream === "") {
-    return await fetch(request) {
-      const _url = new URL("https://hub.docker.com/");
-      const req = new Request(_url, request);
-      return fetch(req);
-    }
-    //return Response.redirect('https://hub.docker.com/', 302);
-    /*return new Response(
+    return new Response(
       JSON.stringify({
         routes: routes,
       }),
       {
         status: 404,
       }
-    );*/
+    );
   }
   
   const isDockerHub = upstream == dockerHub;
