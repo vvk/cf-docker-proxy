@@ -14,7 +14,7 @@ MODE = "debug"
 TARGET_UPSTREAM = "https://registry-1.docker.io"
 
 [env.production]
-name = "cloudflare-docker-proxy"
+name = "cf-docker-proxy"
 # routes = [
 #   { pattern = "docker.ipcloud.vip", custom_domain = true },
 #   { pattern = "quay.ipcloud.vip", custom_domain = true },
