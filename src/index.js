@@ -36,14 +36,12 @@ async function handleRequest(request) {
   const url = new URL(request.url);
   const upstream = routeByHosts(url.hostname);
   if (upstream === "") {
-    return new Response(
-      JSON.stringify({
-        routes: routes,
-      }),
-      {
-        status: 404,
+    return new Response(DOCS, {
+      status: 200,
+      headers: {
+        "content-type": "text/html"
       }
-    );
+    });
   }
 
    
